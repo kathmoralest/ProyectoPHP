@@ -2,7 +2,7 @@ import ply.lex as lex
 
 # Palabras reservadas
 reserved = {
-    "const:CONST",
+    "const":"CONST",
     "if":"IF",
     "for":"FOR",
     "while":"WHILE",
@@ -32,21 +32,41 @@ tokens = [
     "LIZQ",
     "LDER",
     "CIZQ",
-    "CDER"
+    "CDER",
+    "COMPARACION",
+    "IDENTICO",
+    "DIFERENTE",
+    "NOIDENTICO",
+    "MENOROIGUAL",
+    "MAYOROIGUAL",
+    "NAVEESPACIAL",
+    "FUSIONNULL"
+
 ] + list(reserved.values())
 
+t_IGUAL=r"="
 t_PROD = r"\*"
 t_MAS = r"\+"
 t_MOD = r"%"
 t_MAYOR = r">"
 T_MENOR = r"<"
-t_DIV=r"/"
+t_DIV=r"\/"
 t_POTENCIA=r"\*\*"
 t_RESTA=r"-"
 t_CIZQ=r"\["
 t_CDER=r"\]"
 t_LIZQ=r"\{"
 t_LDER=r"\}"
+
+t_COMPARACION=r"=="
+t_IDENTICO=r"==="
+t_DIFERENTE=r"!=|<>"
+t_NOIDENTICO=r"!=="
+t_MENOROIGUALQUE=r"<="
+t_MAYOROIGUALQUE=r">="
+t_NAVEESPACIAL=r"<=>"
+t_FUSIONNULL=r"\?\?"
+
 
 
 # Especificaciones de cada token
