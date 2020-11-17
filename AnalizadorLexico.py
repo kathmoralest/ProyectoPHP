@@ -24,7 +24,7 @@ tokens = [
     "PROD",
     "MOD",
     "MAYOR",
-    "ENTERO",
+    "MENOR",
     "MAS",
     "DIV",
     "RESTA",
@@ -34,6 +34,20 @@ tokens = [
     "CIZQ",
     "CDER"
 ] + list(reserved.values())
+
+t_PROD = r"\*"
+t_MAS = r"\+"
+t_MOD = r"%"
+t_MAYOR = r">"
+T_MENOR = r"<"
+t_DIV=r"/"
+t_POTENCIA=r"\*\*"
+t_RESTA=r"-"
+t_CIZQ=r"\["
+t_CDER=r"\]"
+t_LIZQ=r"\{"
+t_LDER=r"\}"
+
 
 # Especificaciones de cada token
 
