@@ -2,15 +2,15 @@ import ply.lex as lex
 
 # Palabras reservadas
 reserved = {
-    "const":"CONST",
-    "if":"IF",
-    "for":"FOR",
-    "while":"WHILE",
+    "const":"CONST",#
+    "if":"IF",#
+    "for":"FOR",#
+    "while":"WHILE",#
     "break":"BREAK",
     "else":"ELSE",
     "this":"THIS",
-    "true":"TRUE",
-    "false":"FALSE"
+    "true":"TRUE",#
+    "false":"FALSE"#
 }
 
 # Lista de tokens
@@ -90,6 +90,18 @@ def t_FLOAT(t):
 
 def t_IF(t):
     r"if"
+    return t
+
+def t_BREAK(t):
+    r"break"
+    return t
+
+def t_ELSE(t):
+    r"else"
+    return t
+
+def t_THIS(t):
+    r"this"
     return t
 
 def t_FOR(t):
