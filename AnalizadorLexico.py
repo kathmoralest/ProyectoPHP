@@ -10,7 +10,8 @@ reserved = {
     "else":"ELSE",
     "this":"THIS",
     "true":"TRUE",
-    "false":"FALSE"
+    "false":"FALSE",
+    "echo":"ECHO"
 }
 
 # Lista de tokens
@@ -58,6 +59,8 @@ t_CIZQ=r"\["
 t_CDER=r"\]"
 t_LIZQ=r"\{"
 t_LDER=r"\}"
+t_PTO=r"\."
+t_PTOCO=r";"
 
 t_COMPARACION=r"=="
 t_IDENTICO=r"==="
@@ -69,6 +72,10 @@ t_NAVEESPACIAL=r"<=>"
 t_FUSIONNULL=r"\?\?"
 
 # Tokens complejos
+def t_ECHO(t):
+    r'echo'
+    return t
+
 def t_VARIABLE(t):
     r"\$[a-zA-Z_][a-zA-Z0-9]*"
     t.type = reserved.get(t.value, 'VARIABLE')  # Check for reserved words
@@ -114,6 +121,10 @@ def t_WHILE(t):
     
 def t_TRUE(t):
     r"true"
+    return t
+    
+def t_STRING(t):
+    r'(("[^"]*")|(\'[^\']*\'))'
     return t
 
 def t_FALSE(t):
