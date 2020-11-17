@@ -2,7 +2,7 @@ import ply.lex as lex
 
 # Palabras reservadas
 reserved = {
-    "const:CONST"
+    "const:CONST",
     "if":"IF",
     "for":"FOR",
     "while":"WHILE",
@@ -19,7 +19,20 @@ tokens = [
     "INTEGER",
     "BOOLEAN",
     "STRING",
-    "FLOAT"
+    "FLOAT",
+    "IGUAL",
+    "PROD",
+    "MOD",
+    "MAYOR",
+    "ENTERO",
+    "MAS",
+    "DIV",
+    "RESTA",
+    "POTENCIA",
+    "LIZQ",
+    "LDER",
+    "CIZQ",
+    "CDER"
 ] + list(reserved.values())
 
 # Especificaciones de cada token
