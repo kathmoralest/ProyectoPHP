@@ -44,6 +44,7 @@ tokens = [
 
 ] + list(reserved.values())
 
+# Especificaciones de cada token
 t_IGUAL=r"="
 t_PROD = r"\*"
 t_MAS = r"\+"
@@ -67,24 +68,12 @@ t_MAYOROIGUAL=r">="
 t_NAVEESPACIAL=r"<=>"
 t_FUSIONNULL=r"\?\?"
 
-
-
-# Especificaciones de cada token
-
 # Tokens complejos
 def t_VARIABLE(t):
     r"\$[a-zA-Z_][a-zA-Z0-9]*"
     t.type = reserved.get(t.value, 'VARIABLE')  # Check for reserved words
     return t
-    
-def t_newline(t):
-    r"\n+"
-    t.lexer.lineno += len(t.value)
 
-def t_error(t):
-    print("Token NO reconocido '%s'" % t.value[0])
-    t.lexer.skip(1)
-    
 def t_INTEGER(t):
     r"-?\d+"
     t.value = int(t.value)
@@ -119,6 +108,13 @@ def t_FALSE(t):
 t_ignore = ' \t'
 t_ignore_CM = r"//.*"
 
+def t_newline(t):
+    r"\n+"
+    t.lexer.lineno += len(t.value)
+
+def t_error(t):
+    print("Token NO reconocido '%s'" % t.value[0])
+    t.lexer.skip(1)
 
 lexer = lex.lex()
 
