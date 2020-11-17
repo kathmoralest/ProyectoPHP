@@ -1,0 +1,6 @@
+$verdadero = True
+$falso = False
+$cadena="Hola mundo"
+$contador
+++$contador
+for($inicio = 0; $inicio < 10; $inicio++)
