@@ -1,0 +1,9 @@
+$a = 1.234; 
+$b = 1.2e3; 
+const MINVALUE = 0.0;      
+const MAXVALUE = 1.0;  
+
+$i = 1;
+while ($i <= 10):
+    echo $i;
+    $i++;

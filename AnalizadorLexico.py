@@ -41,7 +41,12 @@ tokens = [
     "MENOROIGUAL",
     "MAYOROIGUAL",
     "NAVEESPACIAL",
-    "FUSIONNULL"
+    "FUSIONNULL",
+    "PTO",
+    "PTOCO",
+    "PIZQ",
+    "PDER",
+    "DPTS"
 
 ] + list(reserved.values())
 
@@ -61,6 +66,9 @@ t_LIZQ=r"\{"
 t_LDER=r"\}"
 t_PTO=r"\."
 t_PTOCO=r";"
+t_PIZQ=r"\("
+T_PDER=r"\)"
+T_DPTS=r":"
 
 t_COMPARACION=r"=="
 t_IDENTICO=r"==="
@@ -154,7 +162,7 @@ def analizar(data):
             break  # No more input
         print(tok)
 
-listaTXT=["codigoKatherineMorales.txt"]
+listaTXT=["codigoKatherineMorales.txt","codigoAngieArgudo.txt"]
 for integrante in listaTXT:
     print("Ejemplo de: "+integrante)
     archivo = open(integrante)
