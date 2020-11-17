@@ -1,7 +1,11 @@
+import ply.lex as lex
+
 # Palabras reservadas
 reserved = {
+    "const:CONST"
     "if":"IF",
-    "for":"FOR"
+    "for":"FOR",
+    "while":"WHILE",
     "break":"BREAK",
     "else":"ELSE",
     "this":"THIS",
@@ -14,7 +18,8 @@ tokens = [
     "VARIABLE",
     "INTEGER",
     "BOOLEAN",
-    "STRING"
+    "STRING",
+    "FLOAT"
 ] + list(reserved.values())
 
 # Especificaciones de cada token
@@ -29,9 +34,22 @@ def t_INTEGER(t):
     r"-?\d+"
     t.value = int(t.value)
     return t
-    
+
+def t_CONST(t):
+    r"const"
+    return t
+
+def t_FLOAT(t):
+    r"\d+\.\d+"
+    t.value = float(t.value)
+    return t
+
 def t_FOR(t):
     r"for"
+    return t
+
+def t_WHILE(t):
+    r"while"
     return t
     
 def t_TRUE(t):
@@ -41,3 +59,10 @@ def t_TRUE(t):
 def t_FALSE(t):
     r"false"
     return t
+
+#Ignorar caracteres
+t_ignore = ' \t'
+t_ignore_CM = r"//.*"
+
+
+lexer = lex.lex()
