@@ -17,6 +17,7 @@ reserved = {
 # Lista de tokens
 tokens = [
     "VARIABLE",
+    "CONSTANTE",
     "INTEGER",
     "BOOLEAN",
     "STRING",
@@ -67,8 +68,8 @@ t_LDER=r"\}"
 t_PTO=r"\."
 t_PTOCO=r";"
 t_PIZQ=r"\("
-T_PDER=r"\)"
-T_DPTS=r":"
+t_PDER=r"\)"
+t_DPTS=r"\:"
 
 t_COMPARACION=r"=="
 t_IDENTICO=r"==="
@@ -96,6 +97,11 @@ def t_INTEGER(t):
 
 def t_CONST(t):
     r"const"
+    return t
+
+def t_CONSTANTE(t):
+    r"[a-zA-Z_][a-zA-Z0-9]*"
+    t.type = reserved.get(t.value, 'CONSTANTE')  # Check for reserved words
     return t
 
 def t_FLOAT(t):
