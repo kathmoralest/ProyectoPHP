@@ -66,3 +66,22 @@ t_ignore_CM = r"//.*"
 
 
 lexer = lex.lex()
+
+def analizar(data):
+    lexer.input(data)
+    # Tokenize
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        print(tok)
+
+listaTXT=["codigoKatherineMorales.txt"]
+for integrante in listaTXT:
+    print("Ejemplo de: "+integrante)
+    archivo = open(integrante)
+    for linea in archivo:
+        print(">>"+linea)
+        analizar(linea)
+        if len(linea)==0:
+            break
