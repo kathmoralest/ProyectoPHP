@@ -1,0 +1,6 @@
+$variable
+++$variable
+$a = 2
+$b = 4
+$_=45
+if $a>$b

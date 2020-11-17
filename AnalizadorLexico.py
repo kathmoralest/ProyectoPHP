@@ -88,6 +88,10 @@ def t_FLOAT(t):
     t.value = float(t.value)
     return t
 
+def t_IF(t):
+    r"if"
+    return t
+
 def t_FOR(t):
     r"for"
     return t
