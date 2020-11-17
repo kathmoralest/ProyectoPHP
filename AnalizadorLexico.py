@@ -2,15 +2,15 @@ import ply.lex as lex
 
 # Palabras reservadas
 reserved = {
-    "const":"CONST",#
-    "if":"IF",#
-    "for":"FOR",#
-    "while":"WHILE",#
+    "const":"CONST",
+    "if":"IF",
+    "for":"FOR",
+    "while":"WHILE",
     "break":"BREAK",
     "else":"ELSE",
     "this":"THIS",
-    "true":"TRUE",#
-    "false":"FALSE"#
+    "true":"TRUE",
+    "false":"FALSE"
 }
 
 # Lista de tokens
