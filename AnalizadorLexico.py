@@ -177,3 +177,11 @@ for integrante in listaTXT:
         analizar(linea)
         if len(linea)==0:
             break
+
+'''
+while True:
+    data = input("> ")
+    analizar(data)
+    if len(data)==0:
+        break
+'''
