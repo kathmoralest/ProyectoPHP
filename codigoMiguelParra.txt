@@ -1,6 +1,11 @@
-$verdadero = True
-$falso = False
-$cadena="Hola mundo"
-$contador
-++$contador
-for($inicio = 0; $inicio < 10; $inicio++)
+<?php
+
+var $variable = 5;
+$variable2 = 6;
+
+while($variable > $variable2){
+	for($c = 0;$c < 4; ++$c){
+		echo "hola mundo";
+	}
+}
+?>

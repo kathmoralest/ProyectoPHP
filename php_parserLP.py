@@ -184,7 +184,7 @@ def p_error(p):
 
 parser=yacc.yacc()
 
-listaTXT=["codigoKatherineMorales.txt"]
+listaTXT=["codigoKatherineMorales.txt","codigoAngieArgudo.txt","codigoMiguelParra.txt"]
 for integrante in listaTXT:
     f=open(integrante)
     s=f.read()
