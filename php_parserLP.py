@@ -182,12 +182,13 @@ def p_echo(p):
 def p_error(p):
     print("Syntax error in input!")
 
-parser = yacc.yacc()
-
 parser=yacc.yacc()
-f=open("codigo.txt")
-s=f.read()
-print(s)
-result = parser.parse(s)
-print(result)
-f.close()
+
+listaTXT=["codigoAngieArgudo.txt","codigoMiguelParra.txt","codigoKatherineMorales.txt"]
+for integrante in listaTXT:
+    f=open(integrante)
+    s=f.read()
+    print(s)
+    result = parser.parse(s)
+    print(result)
+    f.close()
