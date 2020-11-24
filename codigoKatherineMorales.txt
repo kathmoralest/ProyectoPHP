@@ -1,6 +1,6 @@
 <?php
-$valor1 =1
-$valor2 =45
+$valor1 =1;
+$valor2 =45;
 if ($valor1 == $valor2) {
     echo "Entro al if";
 } elseif ($valor1 < $valor2) {
@@ -8,6 +8,6 @@ if ($valor1 == $valor2) {
 } else {
     echo "Entro al else";
 }
-$booleano1 = true;
-$booleano2 = false;
+$booleano1 = True;
+$booleano2 = False;
 ?>
