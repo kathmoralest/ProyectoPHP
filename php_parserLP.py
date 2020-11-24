@@ -134,8 +134,11 @@ def p_booleano(p): # se definen los booleanos a utilizar
                 | FALSE
     '''
 
-def p_adicion(p): # se define la estructura de la adicion por ejemplo: para agregar uno a un contador
+def p_incDec(p): # se define la estructura de la adicion por ejemplo: para agregar uno a un contador
     '''adicion : MAS MAS VARIABLE
+               | MENOS MENOS VARIABLE
+               | VARIABLE MAS MAS
+               | VARIABLE MENOS MENOS
     '''
 
 def p_condicionalIF(p): # se definen las posibles formas de if que se pueden utilizar

@@ -36,6 +36,7 @@ tokens = [
              "MAYOR",
              "MENOR",
              "MAS",
+             "MENOS",
              "DIV",
              "RESTA",
              "POTENCIA",
@@ -64,6 +65,7 @@ tokens = [
 t_IGUAL = r"="
 t_PROD = r"\*"
 t_MAS = r"\+"
+t_MENOS = r"\-"
 t_MOD = r"%"
 t_MAYOR = r">"
 t_MENOR = r"<"

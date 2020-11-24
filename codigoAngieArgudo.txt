@@ -11,7 +11,8 @@ $i = 1;
 while ($i < 10) {
     echo "Angie";  
 }
-for ($i = 0; $i < 3; ++$i) {
+
+for  ($i = 0; $i < 3; $i++) {
     echo "Angie";
 }
 
