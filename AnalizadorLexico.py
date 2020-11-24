@@ -110,7 +110,8 @@ tokens = [
     "PDER",
     "INICIO",
     "FIN",
-    "COMA"
+    "COMA",
+    "DOSPUNTOS"
 
 ] + list(reserved.values())
 
@@ -132,6 +133,7 @@ t_PTOCO=r";"
 t_PIZQ=r"\("
 t_PDER=r"\)"
 t_COMA=r","
+t_DOSPUNTOS=r":"
 
 t_COMPARACION=r"=="
 t_IDENTICO=r"==="
