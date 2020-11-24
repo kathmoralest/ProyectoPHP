@@ -1,11 +1,11 @@
 import ply.yacc as yacc
 from AnalizadorLexico import tokens
 
-def p_phpSyntax(p):
+def p_phpSyntax(p): # define que se empiece el código correctamente con "<?php" y se termine con "?>"
     '''phpSyntax : inicio codigo fin
     '''
 
-def p_codigo(p):
+def p_codigo(p): # define todo el código
     '''codigo : algoritmo
                 | algoritmo codigo
     '''
@@ -18,7 +18,7 @@ def p_fin(p):
     '''fin : FIN
     '''
 
-def p_algoritmo(p):
+def p_algoritmo(p): # diferentes algoritmos que se pueden utilizar
     '''algoritmo : asignacion
                  | declaracion
                  | comparacion
@@ -31,28 +31,27 @@ def p_algoritmo(p):
                  | terminar
     '''
 
-def p_asignacion(p):
+def p_asignacion(p): # se pueden asignar variables usando el ambito o no, intentamos usar el empty para esto pero no nos funciono
     '''asignacion : ambito multiVariable IGUAL expresion PTOCO
                   | multiVariable IGUAL expresion PTOCO
     '''
    
-def p_declaracion(p):
+def p_declaracion(p): # se pueden definir variables usando el ambito o no
     '''declaracion : ambito multiVariable PTOCO
                    | multiVariable PTOCO
     '''
 
-def p_multiVariable(p):
+def p_multiVariable(p): # se puede definir una variable o varias seguidas de coma
      '''multiVariable : VARIABLE
                       | VARIABLE COMA multiVariable
      '''
 
-def p_ambito(p):
+def p_ambito(p): # se utilizan para definir variables, se pueden no utilizar
     '''ambito : STATIC
                | VAR
                | GLOBAL
                | CONST
     '''
-
 # En esta seccion se compara los valores usando los operadores
 def p_comparacion(p):
     '''comparacion : valor operadorC expresion PTOCO
