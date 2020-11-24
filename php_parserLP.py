@@ -129,6 +129,56 @@ def p_valor(p):
              | BOOLEAN
     '''
 
+def p_booleano(p): # se definen los booleanos a utilizar
+    '''booleano : TRUE
+                | FALSE
+    '''
+
+def p_adicion(p): # se define la estructura de la adicion por ejemplo: para agregar uno a un contador
+    '''adicion : MAS MAS VARIABLE
+    '''
+
+def p_condicionalIF(p): # se definen las posibles formas de if que se pueden utilizar
+	'''condicionalIF : IF PIZQ condicion PDER LIZQ codigo LDER
+					  | IF PIZQ condicion PDER LIZQ codigo LDER condicionalELSE
+					  | IF PIZQ condicion PDER codigo
+					  | IF PIZQ condicion PDER codigo condicionalELSE
+	'''
+
+def p_condicionalELSE(p): # se definen el condicional else y elseif
+	'''condicionalELSE : ELSE LIZQ codigo LDER
+				 | ELSEIF PIZQ condicion PDER LIZQ codigo LDER condicionalELSE
+				 | ELSE codigo
+				 | ELSEIF PIZQ condicion PDER codigo condicionalELSE
+	 '''
+
+def p_iteracionFOR(p): # se define la iteracion for
+	'''iteracionFOR : FOR PIZQ asignacion condicion PTOCO adicion PDER codigo
+	                | FOR PIZQ asignacion condicion PTOCO adicion PDER LIZQ codigo LDER
+	'''
+
+def p_bucleWHILE(p):
+	'''bucleWHILE : WHILE PIZQ condicion PDER codigo
+	                | WHILE PIZQ condicion PDER LIZQ codigo LDER
+	'''
+
+def p_bucleDO_WHILE(p):
+    '''bucleDO_WHILE : DO LIZQ codigo LDER WHILE PIZQ condicion PDER codigo
+	                | DO LIZQ codigo LDER WHILE PIZQ condicion PDER LIZQ codigo LDER
+	'''
+
+def p_indexacion(p): # se define la indexación en caso de necesitarse en los array
+    '''indexacion :  VARIABLE CIZQ INTEGER CDER
+                    | VARIABLE CIZQ RESTA INTEGER CDER
+                    | VARIABLE CIZQ INTEGER CDER FUSIONNULL
+                    | VARIABLE CIZQ RESTA INTEGER CDER FUSIONNULL
+    '''
+
+def p_echo(p):
+    '''echo : ECHO VARIABLE PTOCO
+            | ECHO expresion PTOCO
+    '''
+
 def p_error(p):
     print("Syntax error in input!")
 
