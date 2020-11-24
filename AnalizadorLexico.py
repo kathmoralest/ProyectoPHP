@@ -2,16 +2,78 @@ import ply.lex as lex
 
 # Palabras reservadas
 reserved = {
-    "const":"CONST",
-    "if":"IF",
-    "for":"FOR",
-    "while":"WHILE",
-    "break":"BREAK",
-    "else":"ELSE",
+    "const":"CONST", # VARIABLES
+    "var":"VAR",
     "this":"THIS",
-    "true":"TRUE",
+    "static":"STATIC",
+    "global":"GLOBAL",
+    "true":"TRUE", # BOOLEANOS
     "false":"FALSE",
-    "echo":"ECHO"
+    "and":"AND", # OPERADORES LOGICOS
+    "or":"OR",
+    "xor":"XOR",
+    "not":"NOT",
+    "if":"IF", # ESTSRUCTURA DE CONTROL IF
+    "else":"ELSE",
+    "elseif":"ELSEIF",
+    "switch":"SWITCH", # ESTRUCTURA DE CONTROL SWITCH
+    "case":"CASE",
+    "break":"BREAK",
+    "default":"DEFAULT",
+    "while":"WHILE", # LAZO WHILE
+    "do":"DO",
+    "for":"FOR", # LAZO FOR
+    "foreach":"FOREACH",
+    "array()":"ARRAY", # ARRAY
+    "echo":"ECHO", # SALIDA POR PANTALLA
+    "__halt_compiler()":"HALTCOMPILER",
+    "abstract":"ABSTRACT",
+    "as":"AS",
+    "callable":"CALLABLE",
+    "catch":"CATCH",
+    "class":"CLASS",
+    "clone":"CLONE",
+    "continue":"CONTINUE",
+    "declare":"DECLARE",
+    "die()":"DIE",
+    "empty()":"EMPTY",
+    "enddeclare":"ENDDECLARE",
+    "endfor":"ENDFOR",
+    "endforeach":"ENDFOREACH",
+    "endif":"ENDIF",
+    "endswitch":"ENDSWITCH",
+    "endwhile":"ENDWHILE",
+    "eval()":"EVAL",
+    "exit()":"EXIT",
+    "extends":"EXTENDS",
+    "final":"FINAL",
+    "finally":"FINALLY",
+    "function":"FUNCTION",
+    "goto":"GOTO",
+    "implements":"IMPLEMENTS",
+    "include":"INCLUDE",
+    "include_once":"INCLUDEONE",
+    "instanceof":"INSTANCEOF",
+    "insteadof":"INSTEADOF",
+    "interface":"INTERFACE",
+    "isset()":"ISSET",
+    "list()":"LIST",
+    "namespace":"NAMESPACE",
+    "new":"NEW",
+    "print":"PRINT",
+    "private":"PRIVATE",
+    "protected":"PROTECTED",
+    "public":"PUBLIC",
+    "require":"REQUIRE",
+    "require_once":"REQUIREONCE",
+    "return":"RETURN",
+    "throw":"THROW",
+    "trait":"TRAIT",
+    "try":"TRY",
+    "unset()":"UNSET",
+    "use":"USE",
+    "yield":"YIELD",
+    "yield from":"YIELDFROM"
 }
 
 # Lista de tokens
