@@ -20,3 +20,21 @@ lblc.place(x=420,y=100)
 
 T = tk.Text(window, height=30 , width=43)
 T.place(x=65,y=100)
+
+def flexico():
+   input = T.get("1.0", "end-1c")
+   r = ll.l(input)
+   lblc.configure(text=r)
+
+buttonL = tk.Button(window, text = 'A. LÉXICO', highlightbackground='#3E4149', height=1, width=15, command = flexico)
+
+buttonL.place(x=420,y=520)
+
+def fsintactico():
+   input = T.get("1.0", "end-1c")
+   resultado = pp.p(input)
+   lblc.configure(text=resultado)
+
+buttonS = tk.Button(window, text = 'A. SINTÁCTICO', highlightbackground='#3E4149', height=1, width=15, command = fsintactico)
+
+buttonS.place(x=585,y=520)
