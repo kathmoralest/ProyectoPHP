@@ -38,3 +38,14 @@ def fsintactico():
 buttonS = tk.Button(window, text = 'A. SINTÁCTICO', highlightbackground='#3E4149', height=1, width=15, command = fsintactico)
 
 buttonS.place(x=585,y=520)
+
+
+def borrarText():
+   T.delete(1.0, "end")
+   lblc.configure(text='')
+
+buttonT = tk.Button(window, text='CLEAR TEXT', highlightbackground='#3E4149', height=1, width=35, command=borrarText)
+
+buttonT.place(x=65, y=510)
+
+window.mainloop()

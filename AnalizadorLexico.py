@@ -1,6 +1,6 @@
 import ply.lex as lex
 
-
+estado = "LEXER OK!"
 # Palabras reservadas
 ##NUEVAS AÑADIDAS STATIC VAR GLOBAL
 reserved = {
@@ -221,13 +221,14 @@ def t_newline(t):
     r"\n+"
     t.lexer.lineno += len(t.value)
 
-
 def t_error(t):
-
-    print("Token NO reconocido '%s'" % t.value[0]+"\n")
+    global estado
+    estado+="Token NO reconocido '%s'" % t.value[0]+"\n"
     t.lexer.skip(1)
 
+
 lexer = lex.lex()
+
 def analizar(data):
     lexer.input(data)
     # Tokenize
@@ -237,3 +238,12 @@ def analizar(data):
             break  # No more input
         print(tok)
         return tok
+
+def l(texto):
+    global estado
+    for linea in texto:
+        analizar(linea)
+        estado+=">>"+linea
+        if len(linea) == 0:
+            break
+    return estado

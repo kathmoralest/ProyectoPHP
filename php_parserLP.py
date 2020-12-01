@@ -192,3 +192,9 @@ def p_error(p):
 
 parser=yacc.yacc()
 
+def p(texto):
+    global estado
+    estado = "Perfect!"
+    parser.parse(texto)
+    return estado
+
