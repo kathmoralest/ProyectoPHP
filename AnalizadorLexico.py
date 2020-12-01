@@ -1,5 +1,6 @@
 import ply.lex as lex
 
+
 # Palabras reservadas
 ##NUEVAS AÑADIDAS STATIC VAR GLOBAL
 reserved = {
@@ -93,7 +94,7 @@ t_FUSIONNULL = r"\?\?"
 
 # Clausulas
 def t_INICIO(t):
-    r'(<\?(php)?)'
+    r'(^<\?(php)?)'
     return t
 
 
@@ -118,7 +119,7 @@ def t_NOT(t):
 
 
 def t_FIN(t):
-    r'\?>'
+    r'\?>$'
     return t
 
 
@@ -222,12 +223,11 @@ def t_newline(t):
 
 
 def t_error(t):
-    print("Token NO reconocido '%s'" % t.value[0])
+
+    print("Token NO reconocido '%s'" % t.value[0]+"\n")
     t.lexer.skip(1)
 
-
 lexer = lex.lex()
-
 def analizar(data):
     lexer.input(data)
     # Tokenize
@@ -236,13 +236,4 @@ def analizar(data):
         if not tok:
             break  # No more input
         print(tok)
-
-listaTXT=["codigoKatherineMorales.txt","codigoAngieArgudo.txt","codigoMiguelParra.txt"]
-for integrante in listaTXT:
-    print("Ejemplo de: "+integrante)
-    archivo = open(integrante)
-    for linea in archivo:
-        print(">>"+linea)
-        analizar(linea)
-        if len(linea)==0:
-            break
+        return tok

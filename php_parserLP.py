@@ -3,11 +3,14 @@ from AnalizadorLexico import tokens
 
 def p_phpSyntax(p): # define que se empiece el código correctamente con "<?php" y se termine con "?>"
     '''phpSyntax : inicio codigo fin
+                  | inicio fin
     '''
+
 
 def p_codigo(p): # define todo el código
     '''codigo : algoritmo
                 | algoritmo codigo
+                | ""
     '''
 
 def p_inicio(p):
@@ -183,15 +186,9 @@ def p_echo(p):
     '''
 
 def p_error(p):
+    global estado
+    estado = "Syntax error in input!"
     print("Syntax error in input!")
 
 parser=yacc.yacc()
 
-listaTXT=["codigoKatherineMorales.txt","codigoAngieArgudo.txt","codigoMiguelParra.txt"]
-for integrante in listaTXT:
-    f=open(integrante)
-    s=f.read()
-    print(s)
-    result = parser.parse(s)
-    print(result)
-    f.close()
