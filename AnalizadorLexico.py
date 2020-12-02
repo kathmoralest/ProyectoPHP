@@ -61,7 +61,6 @@ tokens = [
              "FIN",
              "COMA",
              "PREG",
-             "COMILLAD",
              "DOLAR"
              ]+ list(reserved.values())
 
@@ -85,7 +84,6 @@ t_PIZQ = r"\("
 t_PDER = r"\)"
 t_COMA = r","
 t_PREG =r"\?"
-t_COMILLAD =r"\""
 t_DOLAR =r"\$"
 
 t_COMPARACION = r"=="
@@ -132,14 +130,12 @@ def t_ECHO(t):
     r'echo'
     return t
 
+
 def t_VARIABLE(t):
-    r"^\$[a-zA-Z_][a-zA-Z0-9]*"
+    r"\$[a-zA-Z_][a-zA-Z0-9]*"
+    t.type = reserved.get(t.value, 'VARIABLE')  # Check for reserved words
     return t
 
-def t_STRING(t):
-    r"[a-zA-Z_][a-zA-Z0-9]*"
-    t.type = reserved.get(t.value, 'STRING')  # Check for reserved words
-    return t
 
 def t_INTEGER(t):
     r"-?\d+"
@@ -195,6 +191,11 @@ def t_TRUE(t):
     r"True"
     return t
 
+
+def t_STRING(t):
+    r'(".*")'
+    return t
+
 def t_FALSE(t):
     r"False"
     return t
@@ -215,26 +216,16 @@ def t_error(t):
 
 lexer = lex.lex()
 
-def analizar(data):
-    global estado
-    lexer.input(data)
-    # Tokenize
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break  # No more input
-        print(tok)
-        estado+= str(tok)+"\n"
-        return tok
+
 
 def l(texto):
     global estado
     estado=""
-    palabra = texto.split()
-    for p in palabra:
-        analizar(p)
-        print(">>"+p)
-        #estado+="\n>>"+linea+"\n"
-        if len(p) == 0:
-            break
+    data = texto
+    lexer.input(data)
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        estado += str(tok) + "\n"
     return estado
