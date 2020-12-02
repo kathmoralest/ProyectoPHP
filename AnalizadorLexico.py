@@ -1,9 +1,10 @@
 import ply.lex as lex
 
-estado = "LEXER OK!"
+estado = ""
 # Palabras reservadas
 ##NUEVAS AÑADIDAS STATIC VAR GLOBAL
 reserved = {
+    "php":"PHP",
     "do": "DO",
     "const": "CONST",
     "if": "IF",
@@ -58,9 +59,11 @@ tokens = [
              "PDER",
              "INICIO",
              "FIN",
-             "COMA"
-
-         ] + list(reserved.values())
+             "COMA",
+             "PREG",
+             "COMILLAD",
+             "DOLAR"
+             ]+ list(reserved.values())
 
 # Especificaciones de cada token
 t_IGUAL = r"="
@@ -81,6 +84,9 @@ t_PTOCO = r";"
 t_PIZQ = r"\("
 t_PDER = r"\)"
 t_COMA = r","
+t_PREG =r"\?"
+t_COMILLAD =r"\""
+t_DOLAR =r"\$"
 
 t_COMPARACION = r"=="
 t_IDENTICO = r"==="
@@ -93,129 +99,109 @@ t_FUSIONNULL = r"\?\?"
 
 
 # Clausulas
+def t_PHP(t):
+    r'php'
+    return t
+
 def t_INICIO(t):
     r'(^<\?(php)?)'
     return t
-
 
 def t_AND(t):
     r'and'
     return t
 
-
 def t_XOR(t):
     r'xor'
     return t
-
 
 def t_OR(t):
     r'or'
     return t
 
-
 def t_NOT(t):
     r'not'
     return t
 
-
 def t_FIN(t):
     r'\?>$'
     return t
-
 
 # Tokens complejos
 def t_ECHO(t):
     r'echo'
     return t
 
-
 def t_VARIABLE(t):
-    r"\$[a-zA-Z_][a-zA-Z0-9]*"
-    t.type = reserved.get(t.value, 'VARIABLE')  # Check for reserved words
+    r"^\$[a-zA-Z_][a-zA-Z0-9]*"
     return t
 
+def t_STRING(t):
+    r"[a-zA-Z_][a-zA-Z0-9]*"
+    t.type = reserved.get(t.value, 'STRING')  # Check for reserved words
+    return t
 
 def t_INTEGER(t):
     r"-?\d+"
     t.value = int(t.value)
     return t
 
-
 def t_CONST(t):
     r"const"
     return t
-
 
 def t_FLOAT(t):
     r"\d+\.\d+"
     t.value = float(t.value)
     return t
 
-
 def t_IF(t):
     r"if"
     return t
-
 
 def t_BREAK(t):
     r"break"
     return t
 
-
 def t_ELSE(t):
     r"else"
     return t
-
 
 def t_DO(t):
     r"do"
     return t
 
-
 def t_FOR(t):
     r"for"
     return t
-
 
 def t_STATIC(t):
     r"static"
     return t
 
-
 def t_VAR(t):
     r"var"
     return t
-
 
 def t_GLOBAL(t):
     r"global"
     return t
 
-
 def t_WHILE(t):
     r"while"
     return t
-
 
 def t_TRUE(t):
     r"True"
     return t
 
-
-def t_STRING(t):
-    r'(("[^"]*")|(\'[^\']*\'))'
-    return t
-
-
 def t_FALSE(t):
     r"False"
     return t
 
-
 # Ignorar caracteres
 t_ignore = ' \t'
 t_ignore_CM = r"//.*"
-
 
 def t_newline(t):
     r"\n+"
@@ -224,12 +210,13 @@ def t_newline(t):
 def t_error(t):
     global estado
     estado+="Token NO reconocido '%s'" % t.value[0]+"\n"
+    print("Token NO reconocido '%s'" % t.value[0])
     t.lexer.skip(1)
-
 
 lexer = lex.lex()
 
 def analizar(data):
+    global estado
     lexer.input(data)
     # Tokenize
     while True:
@@ -237,13 +224,17 @@ def analizar(data):
         if not tok:
             break  # No more input
         print(tok)
+        estado+= str(tok)+"\n"
         return tok
 
 def l(texto):
     global estado
-    for linea in texto:
-        analizar(linea)
-        estado+=">>"+linea
-        if len(linea) == 0:
+    estado=""
+    palabra = texto.split()
+    for p in palabra:
+        analizar(p)
+        print(">>"+p)
+        #estado+="\n>>"+linea+"\n"
+        if len(p) == 0:
             break
     return estado
