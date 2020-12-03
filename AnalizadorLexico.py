@@ -48,7 +48,6 @@ tokens = [
              "MAS",
              "MENOS",
              "DIV",
-             "RESTA",
              "POTENCIA",
              "LIZQ",
              "LDER",
@@ -83,7 +82,6 @@ t_MAYOR = r">"
 t_MENOR = r"<"
 t_DIV = r"\/"
 t_POTENCIA = r"\*\*"
-t_RESTA = r"-"
 t_CIZQ = r"\["
 t_CDER = r"\]"
 t_LIZQ = r"\{"

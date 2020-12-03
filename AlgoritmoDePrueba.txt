@@ -5,8 +5,12 @@ const a = 5;
 $booleano = True;
 var $a = 5;
 $b = 6;
+$c = $a+$b;
 var $var1,$var2;
 $abc = NULL;
+
+// Operaciones matematicas
+$a = 5 + ($a - (-5)) * $a;
 
 // Estructuras de control
 if ($a > $b) {
@@ -36,6 +40,7 @@ for  ($i = 0; $i < 3; $i++) {
 // Creacion de funciones
 function print($variable){
      echo $variable;
+     return $variable;
 }
 
 // Uso de funciones

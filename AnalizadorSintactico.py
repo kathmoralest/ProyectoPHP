@@ -44,8 +44,7 @@ def p_algoritmo(p):  # diferentes algoritmos que se pueden utilizar
     '''
 
 
-def p_asignacion(
-        p):  # se pueden asignar variables usando el ambito o no, intentamos usar el empty para esto pero no nos funciono
+def p_asignacion(p):  # se pueden asignar variables usando el ambito o no, intentamos usar el empty para esto pero no nos funciono
     '''asignacion : ambito multiVariable IGUAL expresion PTOCO
                   | multiVariable IGUAL expresion PTOCO
                   | CONST multiConstante IGUAL expresion PTOCO
@@ -94,13 +93,13 @@ def p_multiIngreso(p):  # se puede definir una variable o varias seguidas de com
                      | VARIABLE COMA multiIngreso
                      | expresion COMA multiIngreso
     '''
-
+#
 def p_funcCOD(p):
     '''funcCOD : VARIABLEFUNC PIZQ multiIngreso PDER PTOCO
                 | VARIABLEFUNC PIZQ PDER PTOCO
     '''
 
-
+#nombre de la funcion
 def p_funcAsig(p):
     '''funcAsig : VARIABLEFUNC PIZQ multiVariable PDER
     '''
@@ -110,7 +109,7 @@ def p_Arreglo(p):
     '''Arreglo : ARRAY PIZQ innerColection PDER
     '''
 
-
+# asignacion indice de expresion $array=array('nombre'=>2,'miguel'=>3,'katherine')
 def p_Asig(p):
     '''Asig : expresion FLECHA expresion
     '''
@@ -123,7 +122,6 @@ def p_innerColection(p):
                       | Asig COMA innerColection
     '''
 
-
 # Tipo de expresiones
 def p_expresion(p):
     '''expresion : valor
@@ -134,22 +132,22 @@ def p_expresion(p):
                  | funcAsig
                  | arrayfunctions
                  | Arreglo
+                 | matematica
     '''
-
 
 def p_avInner(p):
     '''avInner : Arreglo
                 | VARIABLE
     '''
 
-
+#
 def p_arrayfunctionsC(p):
     '''arrayfunctionsC : KEY PIZQ avInner PDER PTOCO
                        | CURRENT PIZQ avInner PDER PTOCO
                        | NEXT PIZQ avInner PDER PTOCO
     '''
 
-
+# trata los arrays como variables
 def p_arrayfunctions(p):
     '''arrayfunctions : KEY PIZQ avInner PDER
                        | CURRENT PIZQ avInner PDER
@@ -188,7 +186,8 @@ def p_retorno(p):
 
 def p_dentroFUNC(p):
     '''dentroFUNC : retorno
-                    |  codigo
+                    | codigo dentroFUNC
+                    | codigo
     '''
 
 
@@ -199,9 +198,22 @@ def p_funciones(p):
 
 
 # Operadores matematicos
+def p_conjuntoMatematico(p):
+    '''conjuntoMatematico : PIZQ matematica PDER'''
+
+def p_Operator(p):
+    '''Operator : INTEGER
+                | conjuntoMatematico
+                | VARIABLE
+    '''
+def p_matematica(p):
+    '''matematica : Operator
+                    | Operator operadorM matematica
+    '''
+
 def p_operadorM(p):
     '''operadorM : MAS
-                   | RESTA
+                   | MENOS
                    | PROD
                    | DIV
                    | MOD
@@ -244,6 +256,7 @@ def p_valor(p):
              | arrayfunctions
              | Arreglo
              | NULL
+             | matematica
     '''
 
 
@@ -308,9 +321,9 @@ def p_valoresList(p):
 
 def p_indexacion(p): # se define la indexación en caso de necesitarse en los array
     '''indexacion :  VARIABLE CIZQ INTEGER CDER
-                    | VARIABLE CIZQ RESTA INTEGER CDER
+                    | VARIABLE CIZQ MENOS INTEGER CDER
                     | VARIABLE CIZQ INTEGER CDER FUSIONNULL
-                    | VARIABLE CIZQ RESTA INTEGER CDER FUSIONNULL
+                    | VARIABLE CIZQ MENOS INTEGER CDER FUSIONNULL
     '''
 
 
