@@ -322,7 +322,7 @@ def p_echo(p):
 
 def p_error(p):
     global estado
-    estado = "Syntax error in input!"
+    estado = "\n\n\n\n\n\n\n\n\n\n\tSyntax error in input!"
     print("Syntax error in input!")
 
 
@@ -331,6 +331,6 @@ parser = yacc.yacc()
 
 def p(texto):
     global estado
-    estado = "Perfect!"
+    estado = "\n\n\n\n\n\n\n\n\n\n\t\tPERFECT!"
     parser.parse(texto)
     return estado
