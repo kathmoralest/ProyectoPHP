@@ -159,11 +159,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.php_parserLP" />
       <item itemvalue="Python.AnalizadorLexico" />
       <item itemvalue="Python.Avance0" />
-      <item itemvalue="Python.lex_Js" />
       <item itemvalue="Python.TKinter" />
+      <item itemvalue="Python.lex_Js" />
+      <item itemvalue="Python.php_parserLP" />
     </list>
     <recent_temporary>
       <list>

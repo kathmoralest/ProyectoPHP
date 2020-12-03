@@ -4,7 +4,6 @@ estado = ""
 # Palabras reservadas
 ##NUEVAS AÑADIDAS STATIC VAR GLOBAL
 reserved = {
-    "php":"PHP",
     "do": "DO",
     "const": "CONST",
     "if": "IF",
@@ -24,18 +23,23 @@ reserved = {
     "xor": "XOR",
     "not": "NOT",
     "list": "LIST",
-    "array": "ARRAY",
+    "function" : "FUNCTION",
+    "return" : "RETURN",
+    "array" : "ARRAY",
+    "key" : "KEY",
+    "current" : "CURRENT",
+    "next" : "NEXT",
     "null": "NULL"
 }
 
 # Lista de tokens
 tokens = [
              "VARIABLE",
+             "VARIABLEFUNC",
              "INTEGER",
              "BOOLEAN",
              "STRING",
              "FLOAT",
-             "CONSTANTE",
              "IGUAL",
              "PROD",
              "MOD",
@@ -58,14 +62,15 @@ tokens = [
              "MAYOROIGUAL",
              "NAVEESPACIAL",
              "FUSIONNULL",
+             "FLECHA",
              "PTOCO",
              "PIZQ",
              "PDER",
              "INICIO",
              "FIN",
              "COMA",
-             "PREG",
-             "DOLAR"
+             "POST",
+             "GET"
              ]+ list(reserved.values())
 
 # Especificaciones de cada token
@@ -87,30 +92,58 @@ t_PTOCO = r";"
 t_PIZQ = r"\("
 t_PDER = r"\)"
 t_COMA = r","
-t_PREG =r"\?"
-t_DOLAR =r"\$"
 
 t_COMPARACION = r"=="
 t_IDENTICO = r"==="
 t_DIFERENTE = r"!=|<>"
 t_NOIDENTICO = r"!=="
 t_MENOROIGUAL = r"<="
+t_FLECHA = r"=>"
 t_MAYOROIGUAL = r">="
 t_NAVEESPACIAL = r"<=>"
 t_FUSIONNULL = r"\?\?"
 
 
 # Clausulas
-def t_PHP(t):
-    r'php'
-    return t
 
 def t_INICIO(t):
     r'(^<\?(php)?)'
     return t
 
+def t_POST(t):
+    r'(\$_POST)'
+    return t
+
+def t_GET(t):
+    r'(\$_GET)'
+    return t
+
 def t_AND(t):
     r'and'
+    return t
+
+def t_FUNCTION(t):
+    r'function'
+    return t
+
+def t_ARRAY(t):
+    r'array'
+    return t
+
+def t_KEY(t):
+    r'key'
+    return t
+
+def t_CURRENT(t):
+    r'current'
+    return t
+
+def t_NEXT(t):
+    r'next'
+    return t
+
+def t_RETURN(t):
+    r'return'
     return t
 
 def t_XOR(t):
@@ -129,6 +162,7 @@ def t_FIN(t):
     r'\?>$'
     return t
 
+# Tokens complejos
 def t_ECHO(t):
     r'echo'
     return t
@@ -140,91 +174,88 @@ def t_NULL(t):
 # Tokens complejos
 
 def t_VARIABLE(t):
-    r'\$[a-zA-Z_][a-zA-Z0-9]*'
+    r"\$[a-zA-Z_][a-zA-Z0-9_]*"
     t.type = reserved.get(t.value, 'VARIABLE')  # Check for reserved words
     return t
 
-def t_CONSTANTE(t):
-    r'[a-zA-Z_][a-zA-Z0-9]*'
-    t.type = reserved.get(t.value, 'CONSTANTE')  # Check for reserved words
+def t_VARIABLEFUNC(t):
+    r"[a-zA-Z_][a-zA-Z0-9]*"
+    t.type = reserved.get(t.value, 'VARIABLEFUNC')  # Check for reserved words
     return t
 
 def t_INTEGER(t):
-    r'-?\d+'
+    r"-?\d+"
     t.value = int(t.value)
     return t
 
 def t_CONST(t):
-    r'const'
+    r"const"
     return t
 
 def t_FLOAT(t):
-    r'\d+\.\d+'
+    r"\d+\.\d+"
     t.value = float(t.value)
     return t
 
 def t_IF(t):
-    r'if'
+    r"if"
     return t
 
 def t_BREAK(t):
-    r'break'
+    r"break"
     return t
 
 def t_ELSE(t):
-    r'else'
+    r"else"
     return t
 
 def t_DO(t):
-    r'do'
+    r"do"
     return t
 
 def t_FOR(t):
-    r'for'
+    r"for"
     return t
 
 def t_STATIC(t):
-    r'static'
+    r"static"
     return t
 
 def t_VAR(t):
-    r'var'
+    r"var"
     return t
 
 def t_GLOBAL(t):
-    r'global'
+    r"global"
     return t
 
 def t_WHILE(t):
-    r'while'
+    r"while"
     return t
 
 def t_TRUE(t):
-    r'True'
+    r"True"
     return t
+
 
 def t_STRING(t):
     r'((".*")|(\'.*\'))'
     return t
 
 def t_FALSE(t):
-    r'False'
+    r"False"
     return t
 
 def t_LIST(t):
     r'list'
     return t
 
-def t_ARRAY(t):
-    r'array'
-    return t
-
 # Ignorar caracteres
 t_ignore = ' \t'
-t_ignore_CM = r'//.*'
+t_ignore_CM = r"//.*"
 
 def t_newline(t):
-    r'\n+'
+    r"\n+"
     t.lexer.lineno += len(t.value)
 
 def t_error(t):

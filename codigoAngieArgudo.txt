@@ -12,6 +12,16 @@ while ($i < 10) {
     echo "Angie";
 }
 
+const a = 5;
+$booleano = True;
+
+function print($variable){
+     echo $variable;
+}
+
+print("Hola");
+print($booleano);
+
 for  ($i = 0; $i < 3; $i++) {
     echo "Angie";
 }
