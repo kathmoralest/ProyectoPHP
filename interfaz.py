@@ -28,7 +28,10 @@ scrollbar.place(in_=lblc,relx=1,relheight=1)
 lblc.place(x=400,y=120)
 
 T = Text(window, height=22 , width=40)
-T.place(x=70,y=120)
+
+scrollbar2 = Scrollbar(window,command=T.yview,width=14)
+scrollbar2.place(in_=T,relx=1,relheight=1)
+T.place(x=50,y=120)
 
 def flexico():
    borrarText()
