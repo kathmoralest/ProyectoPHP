@@ -7,15 +7,17 @@ def p_phpSyntax(p): # define que se empiece el código correctamente con "<?php"
     '''
 
 
+def p_inicio(p):
+    '''inicio : INICIO
+    '''
+
+
 def p_codigo(p): # define todo el código
     '''codigo : algoritmo
                 | algoritmo codigo
                 | ""
     '''
 
-def p_inicio(p):
-    '''inicio : INICIO
-    '''
 
 def p_fin(p):
     '''fin : FIN
@@ -31,23 +33,33 @@ def p_algoritmo(p): # diferentes algoritmos que se pueden utilizar
                  | bucleDO_WHILE
                  | indexacion
                  | echo
+                 | list
                  | terminar
     '''
 
 def p_asignacion(p): # se pueden asignar variables usando el ambito o no, intentamos usar el empty para esto pero no nos funciono
     '''asignacion : ambito multiVariable IGUAL expresion PTOCO
                   | multiVariable IGUAL expresion PTOCO
+                  | CONST multiConstante IGUAL expresion PTOCO
+                  | multiConstante IGUAL expresion PTOCO
     '''
    
 def p_declaracion(p): # se pueden definir variables usando el ambito o no
     '''declaracion : ambito multiVariable PTOCO
                    | multiVariable PTOCO
+                   | CONST multiConstante PTOCO
+                   | multiConstante PTOCO
     '''
 
 def p_multiVariable(p): # se puede definir una variable o varias seguidas de coma
      '''multiVariable : VARIABLE
                       | VARIABLE COMA multiVariable
      '''
+
+def p_multiConstante(p):  # se puede definir una variable o varias seguidas de coma
+    '''multiConstante : CONSTANTE
+                     | CONSTANTE COMA multiConstante
+    '''
 
 def p_ambito(p): # se utilizan para definir variables, se pueden no utilizar
     '''ambito : STATIC
@@ -130,6 +142,7 @@ def p_valor(p):
              | FLOAT
              | VARIABLE
              | BOOLEAN
+             | NULL
     '''
 
 def p_booleano(p): # se definen los booleanos a utilizar
@@ -172,6 +185,15 @@ def p_bucleDO_WHILE(p):
     '''bucleDO_WHILE : DO LIZQ codigo LDER WHILE PIZQ condicion PDER codigo
 	                | DO LIZQ codigo LDER WHILE PIZQ condicion PDER LIZQ codigo LDER
 	'''
+
+def p_list(p):
+    '''list : LIST PIZQ valoresList PDER IGUAL VARIABLE PTOCO
+    '''
+
+def p_valoresList(p):
+    '''valoresList : VARIABLE COMA valoresList
+                    | VARIABLE
+    '''
 
 def p_indexacion(p): # se define la indexación en caso de necesitarse en los array
     '''indexacion :  VARIABLE CIZQ INTEGER CDER

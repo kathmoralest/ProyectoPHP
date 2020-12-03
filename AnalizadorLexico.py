@@ -22,7 +22,10 @@ reserved = {
     "and": "AND",
     "or": "OR",
     "xor": "XOR",
-    "not": "NOT"
+    "not": "NOT",
+    "list": "LIST",
+    "array": "ARRAY",
+    "null": "NULL"
 }
 
 # Lista de tokens
@@ -32,6 +35,7 @@ tokens = [
              "BOOLEAN",
              "STRING",
              "FLOAT",
+             "CONSTANTE",
              "IGUAL",
              "PROD",
              "MOD",
@@ -125,87 +129,102 @@ def t_FIN(t):
     r'\?>$'
     return t
 
-# Tokens complejos
 def t_ECHO(t):
     r'echo'
     return t
 
+def t_NULL(t):
+    r'NULL'
+    return t
+
+# Tokens complejos
 
 def t_VARIABLE(t):
-    r"\$[a-zA-Z_][a-zA-Z0-9]*"
+    r'\$[a-zA-Z_][a-zA-Z0-9]*'
     t.type = reserved.get(t.value, 'VARIABLE')  # Check for reserved words
     return t
 
+def t_CONSTANTE(t):
+    r'[a-zA-Z_][a-zA-Z0-9]*'
+    t.type = reserved.get(t.value, 'CONSTANTE')  # Check for reserved words
+    return t
 
 def t_INTEGER(t):
-    r"-?\d+"
+    r'-?\d+'
     t.value = int(t.value)
     return t
 
 def t_CONST(t):
-    r"const"
+    r'const'
     return t
 
 def t_FLOAT(t):
-    r"\d+\.\d+"
+    r'\d+\.\d+'
     t.value = float(t.value)
     return t
 
 def t_IF(t):
-    r"if"
+    r'if'
     return t
 
 def t_BREAK(t):
-    r"break"
+    r'break'
     return t
 
 def t_ELSE(t):
-    r"else"
+    r'else'
     return t
 
 def t_DO(t):
-    r"do"
+    r'do'
     return t
 
 def t_FOR(t):
-    r"for"
+    r'for'
     return t
 
 def t_STATIC(t):
-    r"static"
+    r'static'
     return t
 
 def t_VAR(t):
-    r"var"
+    r'var'
     return t
 
 def t_GLOBAL(t):
-    r"global"
+    r'global'
     return t
 
 def t_WHILE(t):
-    r"while"
+    r'while'
     return t
 
 def t_TRUE(t):
-    r"True"
+    r'True'
     return t
 
-
 def t_STRING(t):
-    r'(".*")'
+    r'((".*")|(\'.*\'))'
     return t
 
 def t_FALSE(t):
-    r"False"
+    r'False'
+    return t
+
+def t_LIST(t):
+    r'list'
+    return t
+
+def t_ARRAY(t):
+    r'array'
     return t
 
 # Ignorar caracteres
 t_ignore = ' \t'
-t_ignore_CM = r"//.*"
+t_ignore_CM = r'//.*'
 
 def t_newline(t):
-    r"\n+"
+    r'\n+'
     t.lexer.lineno += len(t.value)
 
 def t_error(t):

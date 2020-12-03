@@ -19,4 +19,8 @@ for  ($i = 0; $i < 3; $i++) {
 var $a = 5;
 $b = 6;
 var $var1,$var2;
+$array = array(1, 1, 1, 1,  1, 8, 1, 4, 19, 3, 13);
+$info = array('cafe', 'marron', 'cafeina');
+list($bebida, $color, $energia) = $info;
+$abc = NULL;
 ?>
