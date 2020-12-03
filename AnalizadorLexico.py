@@ -260,7 +260,7 @@ def t_newline(t):
 
 def t_error(t):
     global estado
-    estado+="Token NO reconocido '%s'" % t.value[0]+"\n"
+    estado+="\n\tToken NO reconocido '%s'" % t.value[0]+"\n\n"
     print("Token NO reconocido '%s'" % t.value[0])
     t.lexer.skip(1)
 

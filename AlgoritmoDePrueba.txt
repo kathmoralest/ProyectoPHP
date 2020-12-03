@@ -23,6 +23,12 @@ while ($i < 10) {
     echo "Angie";
 }
 
+do {
+    echo $i;
+} while ($i > 0){
+    echo "hola";
+}
+
 for  ($i = 0; $i < 3; $i++) {
     echo "Angie";
 }

@@ -293,7 +293,7 @@ def p_bucleWHILE(p):
     '''
 
 def p_bucleDO_WHILE(p):
-    '''bucleDO_WHILE : DO LIZQ codigo LDER WHILE PIZQ condicion PDER codigo
+    '''bucleDO_WHILE : DO LIZQ codigo LDER WHILE PIZQ condicion PDER PTOCO
 	                | DO LIZQ codigo LDER WHILE PIZQ condicion PDER LIZQ codigo LDER
 	'''
 
