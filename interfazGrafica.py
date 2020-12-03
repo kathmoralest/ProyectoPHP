@@ -1,5 +1,5 @@
 from tkinter import *
-import php_parserLP as pp
+import AnalizadorSintactico as pp
 import AnalizadorLexico as ll
 
 window = Tk()
